@@ -1,28 +1,17 @@
 package br.com.eniac.eniac2f2022;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOServer;
+import com.github.javafaker.Faker;
 
 @SpringBootApplication
 public class Application {
-	
-	@Value("${rt-server.host}")
-    private String host;
-
-    @Value("${rt-server.port}")
-    private Integer port;
-
+    
     @Bean
-    SocketIOServer socketIOServer() {
-        Configuration config = new Configuration();
-        config.setHostname(host);
-        config.setPort(port);
-        return new SocketIOServer(config);
+    Faker faker() {
+    	return new Faker();
     }
 
 	public static void main(String[] args) {
