@@ -42,18 +42,17 @@ public class Controller {
 		uniqueChannel.addEventListener("ready", Object.class, new DataListener<Object>() {
             @Override
             public void onData(SocketIOClient client, Object data, AckRequest ackRequest) {
-            	
-                log.info("Ready recived startind stream on channel: "+ uuid);
-                for(int i = 0; i < 10; i++) {
-                	try {
-						client.sendEvent("message", ObjectGenerator.generateRandomDemoObject(type, faker));
-					} catch (Exception e) {
-						client.sendEvent("error", e.getMessage());
-					}
-                }
-                client.disconnect();
-                server.removeNamespace("/"+uuid);
-                
+							log.info("Ready recived startind stream on channel: "+ uuid);
+							for(int i = 0; i < 10; i++) {
+								try {
+									client.sendEvent("message", ObjectGenerator.generateRandomDemoObject(type, faker));
+								} catch (Exception e) {
+									client.sendEvent("error", e.getMessage());
+								}
+							}
+
+							client.disconnect();
+							server.removeNamespace("/"+uuid);
             }
         });
         
@@ -65,6 +64,7 @@ public class Controller {
         		.expired(false)
         		.expireIn(LocalDateTime.now().plusMinutes(5).toString())
         		.build());
+
 		
 	}
 	

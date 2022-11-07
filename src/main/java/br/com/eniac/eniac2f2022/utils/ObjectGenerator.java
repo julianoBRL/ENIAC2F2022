@@ -10,14 +10,13 @@ public class ObjectGenerator {
 	public static String generateRandomDemoObject(OutputTypes type, Faker faker) throws Exception {
 		
 		DemoObject object = DemoObject.builder()
-		.country(faker.country().name())
-		.email(faker.internet().emailAddress())
-		.telephone(faker.phoneNumber().cellPhone())
-		.name(faker.name().firstName())
-		.build();
-		
+				.country(faker.country().name())
+				.email(faker.internet().emailAddress())
+				.telephone(faker.phoneNumber().cellPhone())
+				.name(faker.name().firstName())
+				.build();
+
 		return ObjectConverter.writeAsString(type, object);
-		
 	}
 	
 }
